@@ -648,6 +648,285 @@ print(mydict.update({"year": 2020}))  # Output: None
 print(mydict)  # Output: {'brand': 'Ford', 'year': 2020}    
 
 
+#  If - else short hand
+
+a = 10
+b = 20  
+
+print("A") if a > b else print("B")
+
+
+#  The pass statement is used when a statement is required syntactically but you do not want any command or code to execute. It is often used as a placeholder for future code.
+a = 10
+if a > 5:
+    pass  # This is a placeholder for future code
+
+#  Python match statement -> same as java switch statement
+
+day = 4
+match day:
+  case 1:
+    print("Monday")
+  case 2:
+    print("Tuesday")
+  case 3:
+    print("Wednesday")
+  case 4:
+    print("Thursday")
+  case 5:
+    print("Friday")
+  case 6:
+    print("Saturday")
+  case 7:
+    print("Sunday")
+
+#  Python for loops 
+
+#  range (start , stop , step )
+
+for x in range(2, 30, 3):
+  print(x) 
+
+
+#  ----------------  Python functions   -------------------------
+
+def my_function():
+    print("Hello from a function")
+
+my_function()  # Output: Hello from a function
+
+
+# Return values from a function
+
+def my_function(x):
+    return 5 * x
+
+print(my_function(3))  # Output: 15
+
+#  Pass statement in functions
+
+# Function definitions cannot be empty. If you need to create a function placeholder without any code, use the pass statement:
+
+def my_function():
+    pass  # This is a placeholder for future code
+
+my_function()  # Output: None (since the function does not return anything)
+
+
+#  keyword arguments in functions   -> orders of the arguments does not matter when we use keyword arguments
+def my_function(child3, child2, child1):
+    print("The youngest child is " + child3)
+
+my_function(child1="Emil", child2="Tobias", child3="Linus")  # Output: The youngest child is Linus
+
+
+# postiton-only parameters in functions -> we can use / to indicate that some parameters are position-only, meaning they must be specified positionally and cannot be used as keyword arguments.
+def my_function(a, b, /, c, d):
+    print(a, b, c, d)
+
+my_function(1, 2, c=3, d=4)  # Output: 1 2 3 4
+#  In this example, a and b are position-only parameters, while c and d can
+
+# Keyword-only parameters in functions -> we can use * to indicate that some parameters are keyword-only, meaning they must be specified as keyword arguments and cannot be used positionally.
+def my_function(a, b, *, c, d):
+    print(a, b, c, d)   
+
+my_function(1, 2, c=3, d=4)  # Output: 1 2 3 4
+#  In this example, a and b can be specified positionally or as keyword arguments, while c and d are keyword-only parameters and must be specified as keyword arguments.    
+
+#  Note - > / → Parameters before it are position-only.
+# * → Parameters after it are keyword-only.
+
+# ---------------  Python *args and **kwargs   -----------------------
+
+#  *args and **kwargs allow functions to accept a unknown number of arguments.
+
+"""
+Arbitrary Arguments - *args
+If you do not know how many arguments will be passed into your function, add a * before the parameter name.
+
+This way, the function will receive a tuple of arguments and can access the items accordingly:
+
+"""  
+
+def my_function(*kids):
+  print("The youngest child is " + kids[2])
+
+my_function("Emil", "Tobias", "Linus") # Output: The youngest child is Linus
+
+
+# Using *args with Regular Arguments ->  Regular parameters must come before *args:
+
+def my_function(greeting, *names):
+  for name in names:
+    print(greeting, name)
+
+my_function("Hello", "Emil", "Tobias", "Linus")  
+# Output:
+# Hello Emil
+# Hello Tobias
+# Hello Linus   
+
+""""
+Arbitrary Keyword Arguments - **kwargs
+If you do not know how many keyword arguments will be passed into your function, add two asterisks ** before the parameter name.
+"""
+
+def my_function(**kid):
+  print("His last name is " + kid["lname"])
+
+my_function(fname = "Tobias", lname = "Refsnes")  # Output: His last name is Refsnes
+
+
+# Using **kwargs with Regular Arguments
+#  Regular parameters must come before **kwargs:
+
+def my_function(username, **details):
+  print("Username:", username)
+  print("Additional details:")
+  for key, value in details.items():
+    print(" ", key + ":", value)
+
+my_function("emil123", age = 25, city = "Oslo", hobby = "coding")
+
+
+"""   Imp
+Unpacking Arguments
+The * and ** operators can also be used when calling functions to unpack (expand) a list or dictionary into separate arguments.
+"""
+
+def my_function(a, b, c):
+  return a + b + c
+
+numbers = [1, 2, 3]
+result = my_function(*numbers) # Same as: my_function(1, 2, 3)
+print(result)  # Output: 6
+
+
+"""
+Unpacking Dictionaries with **
+If you have keyword arguments stored in a dictionary, you can use ** to unpack them:
+"""
+
+def my_function(fname, lname):
+  print("Hello", fname, lname)
+
+person = {"fname": "Emil", "lname": "Refsnes"}
+my_function(**person) # Same as: my_function(fname="Emil", lname="Refsnes") 
+
+#  Global Keyword -> If you need to create a global variable, but are stuck in a local scope, you can use the global keyword.
+
+# The global keyword makes the variable global. Then we can use it anywhere in the program, both inside and outside of functions.
+
+def myfunc():
+  global x
+  x = 300
+
+myfunc()
+
+print(x)
+
+"""  -------------   Very Important  -------------
+# List comprehesions
+# List comprehensions provide a concise way to create lists. It consists of brackets containing an expression followed by a for clause, then zero or more for or if clauses. The expressions can be anything, meaning you can put in all kinds of objects in lists.
+"""
+
+#  example 1 - create a list of squares of numbers from 0 to 9
+squares = [x**2 for x in range(10)]
+print(squares)  # Output: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]  
+
+#  Example 
+
+
+l = [1,2,3,4,5,6]
+r = [x*2 for x in l if x%2==0]
+print(l)
+print(r)
 
 
 
+# import m1
+
+# m1.myfn()
+
+
+from m1 import myfn2
+myfn2()
+
+
+"""  Importnat ------->   Python Dates   """
+
+import datetime
+
+x = datetime.datetime.now()
+print(x)
+
+
+""" Imp - Python Math module """
+
+# Methods in math module
+import math
+print(math.sqrt(16))  # Output: 4.0
+print(math.ceil(1.4))  # Output: 2
+print(math.floor(1.4))  # Output: 1     
+
+#  wihtout math module
+print(min(1,4,5,2))  # Output: 1     
+print(max(1,4,5,2))  # Output: 5     
+
+
+#  Python JSON 
+
+
+# Convert from JSON to Python:
+
+import json
+
+# some JSON:
+x =  '{ "name":"John", "age":30, "city":"New York"}'
+
+# parse x:
+y = json.loads(x)
+
+# the result is a Python dictionary:
+print(y["age"])
+
+
+
+# Convert from Python to JSON
+
+import json
+
+# a Python object (dict):
+x = {
+  "name": "John",
+  "age": 30,
+  "city": "New York"
+}
+
+# convert into JSON:
+y = json.dumps(x)
+
+# the result is a JSON string:
+print(y)    
+
+
+
+"""  Important ->  Python Try Except  """
+
+"""  
+The try block lets you test a block of code for errors.
+
+The except block lets you handle the error.
+
+The else block lets you execute code when there is no error.
+
+The finally block lets you execute code, regardless of the result of the try- and except blocks.
+"""
+
+try:
+  print(x)
+except:
+  print("Something went wrong")
+finally:
+  print("The 'try except' is finished")
